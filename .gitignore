@@ -36,3 +36,6 @@ build/
 
 # twitter config
 creds.yml
+
+# redis stuff
+*.rdb
