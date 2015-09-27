@@ -1,8 +1,8 @@
 require 'rake'
 require 'rspec/core/rake_task'
-require './src/tweets.rb'
+require './src/ocd_tweets.rb'
 require 'resque/tasks'
-require './src/jobs.rb'
+require './src/tweet_job.rb'
 require 'resque'
  
 RSpec::Core::RakeTask.new(:spec) do |t|
@@ -16,7 +16,7 @@ task :default => :spec
 desc 'stream ocd tweets'
 task :stream do 
   
-  Tweets.ocd_tweets
+  OcdTweets.ocd_tweets
   
 end
 
