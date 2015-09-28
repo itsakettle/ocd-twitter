@@ -25,8 +25,9 @@ module OcdTweets
           'text' => tweet["text"],
           'truncated' => tweet["truncated"],
           'time_zone' => tweet["user"]["time_zone"]}
-
+        
         TweetStore.write_tweet(user_id: user_id,timestamp: timestamp, small_tweet: small_tweet.to_json)
+        Metrics.put(tweet['created_at'])
       rescue Exception => e
         puts e
         raise e
