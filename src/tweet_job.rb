@@ -1,4 +1,5 @@
 require_relative 'tweet_store.rb'
+require_relative 'metrics.rb'
 require 'json'
 
 module OcdTweets

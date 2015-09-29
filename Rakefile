@@ -30,3 +30,18 @@ task :resque_test do
   
 end
 
+
+desc 'kill resque workers'
+task :kill_workers do
+  pids = Array.new
+
+  puts "Killing resque workers ... "
+  Resque.workers.each do |worker|
+    pids << worker.to_s.split(/:/)[1]
+  end
+  puts pids
+  if pids.size > 0
+     system("kill -QUIT #{pids.join(' ')}")
+  end
+end
+

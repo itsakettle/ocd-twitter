@@ -26,7 +26,6 @@ module OcdTweets
   def self.ocd_tweets
     
     client.track(TRACK_STRING) do |tweet|
-      puts 'Got one!'
       tweet = tweet.attrs
       begin
         Resque.enqueue(TweetJob,tweet)
