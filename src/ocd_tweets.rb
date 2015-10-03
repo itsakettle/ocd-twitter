@@ -29,6 +29,7 @@ module OcdTweets
       tweet = tweet.attrs
       begin
         Resque.enqueue(TweetJob,tweet)
+        Metrics.put_queue(Time.now)
         #TweetJob.perform(tweet: tweet)
       rescue Exception => e
         puts e
