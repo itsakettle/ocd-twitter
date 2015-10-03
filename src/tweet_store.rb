@@ -7,7 +7,7 @@ module OcdTweets
     TABLE = 'ocd_tweets'
   
     def self.client 
-      Aws::DynamoDB::Client.new(region: "eu-west-1")
+      @client ||= Aws::DynamoDB::Client.new(region: "eu-west-1")
     end
   
     def self.write_tweet(user_id:, timestamp:, small_tweet:)
