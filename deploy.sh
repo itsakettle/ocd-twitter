@@ -1,7 +1,7 @@
 #! /bin/bash
 now=$(date +"%Y%m%d")
 # try to kill the currently running app
-(kill -9 $(cat /var/run/ocd_tweets.pid) && rm ocd_tweets.pid) || echo  "ocd_tweets isn't running\n"
+(kill -9 $(cat ocd_tweets.pid) && rm ocd_tweets.pid) || echo  "ocd_tweets isn't running\n"
 # Make sure workers are killed
 bundle exec rake kill_workers
 # Start the one worker we want
