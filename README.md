@@ -1,3 +1,3 @@
 # ocd-twitter
 
-A ruby app to capture tweets with the OCD in them and store them in dynamo.
+A ruby app to capture tweets with OCD in them and store them in dynamo.
