@@ -4,6 +4,7 @@ require './src/ocd_tweets.rb'
 require 'resque/tasks'
 require './src/tweet_job.rb'
 require 'resque'
+require './src/user_details_retro.rb'
  
 RSpec::Core::RakeTask.new(:spec) do |t|
 t.pattern = Dir.glob('spec/**/*_spec.rb')
@@ -43,5 +44,20 @@ task :kill_workers do
   if pids.size > 0
      system("kill -QUIT #{pids.join(' ')}")
   end
+end
+
+desc 'get a twitter users'
+task :get_twitter_users, [:users] do |t, args|
+  
+  u = args[:users].split(" ")
+  u = u.map { |a| a.to_i}
+  puts OcdTweets.get_users(users: u).map {|u| u.to_h}
+end
+
+desc 'test getting users'
+task :test_retro do
+ 
+ UserDetailsRetro.get_users_retro 
+ 
 end
 

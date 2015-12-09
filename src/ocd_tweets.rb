@@ -1,15 +1,19 @@
 require 'tweetstream'
 require 'yaml'
+require 'twitter'
 require_relative 'tweet_job.rb'
 
 module OcdTweets
   
   TRACK_STRING = 'ocd'
   
+  def self.creds
+    @creds ||= YAML.load_file('./config/creds.yml')
+  end
+  
   def self.client
     
-    # Need to get creds   
-    creds = YAML.load_file('./config/creds.yml')
+    creds = credentials
     
     TweetStream.configure do |config|
       config.consumer_key       = creds['consumer_key']
@@ -20,6 +24,18 @@ module OcdTweets
     end
     
     TweetStream::Client.new
+    
+  end
+  
+  def self.rest_client
+    
+    @rest_client ||= Twitter::REST::Client.new do |config|
+      config.consumer_key        = creds['consumer_key']
+      config.consumer_secret     = creds['consumer_secret']
+      config.access_token        = creds['oauth_token']
+      config.access_token_secret = creds['oauth_token_secret']
+    end
+  
     
   end
 
@@ -37,6 +53,11 @@ module OcdTweets
       end
     end
     
+  end
+  
+  def self.get_users(users:)
+    puts users.class
+    rest_client.users(users)
   end
 
 
