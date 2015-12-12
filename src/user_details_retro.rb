@@ -28,13 +28,13 @@ module UserDetailsRetro
     
     # So this is tricky because it's possible that we might not get some users back. So we need to go through all the tweets and see if we got a user.
     
-    to = 1
-    from = 100
-        
-    loop do 
+    slices = tweets.length.to_f/100).ceil
+    user_calls = tweets.each_slice(slices).to_a
+
+    user_calls.each do |this_call_tweets| 
       
       # This is one call
-      user_object = OcdTweets.get_users(this_call_tweets)
+      user_object = OcdTweets.get_users(this_call_tweets.map {|x| x['user_id']})
   
       this_call_tweets.maps do |tw| 
     
@@ -60,10 +60,6 @@ module UserDetailsRetro
         break if to == tweets.length
         
         sleep(7)
-        
-        from = from + 100
-        to = max(to+100,tweets.length)
-        this_call_tweets = tweets[from..to]
         
       end
         
