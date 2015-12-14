@@ -39,3 +39,6 @@ creds.yml
 
 # redis stuff
 *.rdb
+
+# logs
+*.log

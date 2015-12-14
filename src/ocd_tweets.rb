@@ -56,7 +56,6 @@ module OcdTweets
   end
   
   def self.get_users(users:)
-    puts users.class
     rest_client.users(users)
   end
 

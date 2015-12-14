@@ -54,10 +54,10 @@ task :get_twitter_users, [:users] do |t, args|
   puts OcdTweets.get_users(users: u).map {|u| u.to_h}
 end
 
-desc 'test getting users'
-task :test_retro do
+desc 'getting twitter users'
+task :users_retro do
  
- UserDetailsRetro.get_users_retro 
+ OcdTweets::UserDetailsRetro.get_users_retro 
  
 end
 
