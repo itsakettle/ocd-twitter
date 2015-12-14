@@ -42,3 +42,6 @@ creds.yml
 
 # logs
 *.log
+
+# dynamo config
+dynamo.yml
