@@ -16,7 +16,7 @@ module OcdTweets
     
       tweets =  get_dynamo_tweets(logger: logger)
     
-      logger.info  'finished paginating through Dynamo' 
+      logger.info  'finished paginating through Dynamo. Got ' +  tweets.length
   
       # So we have all the tweets, now we need to get user for each
       # Obv there will be some duplicate users here, but the cost is reasonable
@@ -59,7 +59,7 @@ module OcdTweets
         tweets << t.items
         logger.info 'whiling ' 
         logger.info '  scanned ' + t.scanned_count.to_s + ' and got ' + t.count.to_s
-        break if start_key != nil
+        break if start_key == nil
       end
     
       tweets
