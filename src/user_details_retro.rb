@@ -54,7 +54,9 @@ module OcdTweets
       tweets = []
       select = ['user_id','#ts']
       loop do 
-        t = OcdTweets::TweetStore.get_tweets(start_key: start_key, projection_expression: select.join(','))
+        t = OcdTweets::TweetStore.get_tweets(start_key: start_key
+                                            , projection_expression: select.join(',')
+                                            ,limit: 400)
         start_key = t.last_evaluated_key
         tweets << t.items
         logger.info 'whiling ' 
