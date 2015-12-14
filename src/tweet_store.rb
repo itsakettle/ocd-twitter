@@ -17,13 +17,12 @@ module OcdTweets
       client.put_item(table_name: table, item: item)
     end
     
-    def self.get_tweets(start_key: ,projection_expression:, limit:)
+    def self.get_tweets(start_key:, projection_expression:)
 
       client.scan(projection_expression: projection_expression,
                   table_name: table,
                   exclusive_start_key: start_key,
-                  expression_attribute_names: {"#ts" => "timestamp"},
-                  limit: limit)
+                  expression_attribute_names: {"#ts" => "timestamp"})
 
     end
     
