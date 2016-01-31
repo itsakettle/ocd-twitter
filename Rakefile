@@ -5,6 +5,7 @@ require 'resque/tasks'
 require './src/tweet_job.rb'
 require 'resque'
 require './src/user_details_retro.rb'
+require './src/liberate_from_dynamo.rb'
  
 RSpec::Core::RakeTask.new(:spec) do |t|
 t.pattern = Dir.glob('spec/**/*_spec.rb')
@@ -59,5 +60,13 @@ task :users_retro do
  
  OcdTweets::UserDetailsRetro.get_users_retro 
  
+end
+
+desc 'move tweets from dynamo to RDS. Pages allows controlling number of tweets.'
+task :liberate_from_dynamo, [:pages] do |t, args|
+
+  pages = args[:pages].to_i
+  OcdTweets::LiberateFromDynamo.liberate(pages: pages)
+  
 end
 

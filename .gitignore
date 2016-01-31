@@ -45,3 +45,6 @@ creds.yml
 
 # dynamo config
 dynamo.yml
+
+# db config
+database.yml
