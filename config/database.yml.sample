@@ -1,4 +1,5 @@
-host:
-database:
-username:
+host: 
+boilerroom_database: 
+tweet_database: 
+username: 
 password:

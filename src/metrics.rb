@@ -1,4 +1,5 @@
 require 'date'
+require 'aws-sdk'
 module OcdTweets
 
 	class Metrics
