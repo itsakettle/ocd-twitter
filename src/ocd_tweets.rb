@@ -9,7 +9,7 @@ require_relative 'boilerroom_db.rb'
 module OcdTweets
   
   TRACK_STRING = 'ocd'
-  BOILERROOM_EVERY = 5
+  BOILERROOM_EVERY = 30
   @tweet_count = 0;
   
   def self.creds
